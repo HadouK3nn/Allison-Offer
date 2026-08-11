@@ -251,7 +251,7 @@
 
   .testimonials {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
     gap: 20px;
     margin-top: 44px;
     text-align: left;
@@ -267,7 +267,7 @@
   }
 
   .testimonial.featured {
-    grid-column: 1 / -1;
+    grid-column: 1 / -1; /* spans all 3 columns */
     background: var(--linen);
     border-color: var(--blush);
   }
@@ -450,7 +450,7 @@
     .form-card { padding: 32px 24px 28px; }
     .btn { padding: 18px 40px; }
     .testimonials { grid-template-columns: 1fr; }
-    .testimonial.featured { grid-column: auto; }
+    .testimonial.featured { grid-column: 1 / -1; }
     .t-quote { font-size: 18px; }
     .testimonial.featured .t-quote { font-size: 20px; }
   }
