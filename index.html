@@ -3,182 +3,583 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pattern Interrupt Masterclass — Energy Den</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<title>The Gap — Energy Den</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root{--linen:#EBE3D9;--cream:#F7F2EC;--plum:#3B2230;--soft:#6B4A5C;--mag:#C4106E;--sand:#9C8B80;--blush:#E8C4CE}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{background:var(--cream);font-family:'Jost',sans-serif;color:var(--plum);line-height:1.65}
-  .wrap{max-width:680px;margin:0 auto;padding:0 26px}
-  section{padding:60px 0}
-  .hero{background:var(--linen);padding:84px 0 70px;text-align:center;position:relative;overflow:hidden}
-  .hero::after{content:'';position:absolute;inset:0;pointer-events:none;
-    background:radial-gradient(circle at 15% 10%, rgba(255,255,255,.5) 0 32%, transparent 62%),
-               radial-gradient(circle at 88% 88%, rgba(232,196,206,.4) 0 26%, transparent 58%)}
-  .hero>*{position:relative;z-index:1}
-  .kicker{font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:var(--soft);margin-bottom:22px}
-  h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:52px;line-height:1.08;margin-bottom:20px}
-  .hero .sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--soft);max-width:480px;margin:0 auto 34px}
-  .btn{display:inline-block;background:var(--mag);color:#fff;text-decoration:none;padding:19px 50px;border-radius:999px;
-    font-size:14px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;transition:transform .15s ease}
-  .btn:hover{transform:translateY(-2px)}
-  .meta{font-size:12.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--sand);margin-top:16px}
+  :root {
+    --linen: #EBE3D9;
+    --cream: #F7F2EC;
+    --plum: #3B2230;
+    --soft: #6B4A5C;
+    --mag: #C4106E;
+    --sand: #9C8B80;
+    --blush: #E8C4CE;
+  }
 
-  h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:36px;line-height:1.18;margin-bottom:20px}
-  h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:21px;margin-bottom:7px}
-  p{font-size:16.5px;margin-bottom:16px}
-  p.big{font-size:19px}
-  strong{font-weight:600}
-  .pull{border-left:3px solid var(--mag);padding-left:22px;margin:28px 0;
-    font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;line-height:1.45}
-  .alt{background:var(--linen)}
-  .center{text-align:center}
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  .work-list{margin:26px 0}
-  .work-item{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start;background:#fff;
-    border:1px solid #E5DCD3;padding:16px 20px}
-  .work-item .n{flex:none;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--mag)}
-  .work-item .t{font-size:15.5px;padding-top:2px}
+  body {
+    font-family: 'Jost', sans-serif;
+    background: var(--cream);
+    color: var(--plum);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
 
-  .filter{display:flex;gap:14px;margin-bottom:16px;align-items:flex-start}
-  .filter .dot{flex:none;width:8px;height:8px;border-radius:50%;background:var(--mag);margin-top:9px}
-  .filter p{margin-bottom:0;font-size:15.5px}
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    background: var(--blush);
+    padding: 80px 24px 72px;
+    text-align: center;
+    overflow: hidden;
+  }
 
-  .check-list{margin:24px 0}
-  .check-item{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
-  .check-item .mark{flex:none;color:var(--mag);font-size:19px;font-weight:600}
-  .check-item p{margin-bottom:0;font-size:16px}
+  /* Petal blobs via radial gradients */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 340px 260px at 8% 20%, rgba(196,16,110,.18) 0%, transparent 70%),
+      radial-gradient(ellipse 280px 220px at 92% 80%, rgba(196,16,110,.14) 0%, transparent 70%),
+      radial-gradient(ellipse 200px 180px at 75% 10%, rgba(232,196,206,.55) 0%, transparent 65%),
+      radial-gradient(ellipse 160px 140px at 20% 88%, rgba(232,196,206,.45) 0%, transparent 65%);
+  }
 
-  .patterns{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:24px 0}
-  .pattern-box{background:var(--linen);padding:16px 14px;text-align:center}
-  .pattern-box h4{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:17px;margin-bottom:4px}
-  .pattern-box p{font-size:12.5px;color:var(--soft);margin-bottom:0}
+  /* Decorative petal shapes */
+  .petal {
+    position: absolute;
+    border-radius: 50% 10% 50% 10%;
+    opacity: .22;
+    background: var(--mag);
+    pointer-events: none;
+  }
+  .p1 { width:90px; height:130px; top:-20px; left:4%; transform:rotate(-30deg); }
+  .p2 { width:70px; height:100px; top:30px; left:12%; transform:rotate(20deg); opacity:.15; }
+  .p3 { width:110px; height:80px; top:10px; right:6%; transform:rotate(60deg); }
+  .p4 { width:80px; height:120px; bottom:-10px; right:3%; transform:rotate(-50deg); opacity:.16; }
+  .p5 { width:60px; height:90px; bottom:20px; left:7%; transform:rotate(40deg); opacity:.13; }
+  .p6 { width:50px; height:75px; top:50%; left:1%; transform:rotate(-10deg); opacity:.10; }
+  .p7 { width:65px; height:95px; top:55%; right:2%; transform:rotate(25deg); opacity:.12; }
 
-  .logistics{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin:26px 0;text-align:center}
-  .lg-item{background:#fff;border:1px solid #E5DCD3;padding:20px 14px}
-  .lg-item .lbl{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--sand);margin-bottom:6px}
-  .lg-item .val{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:19px;color:var(--plum)}
+  .hero > .wrap { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
 
-  .cta-block{text-align:center;padding:66px 0}
-  footer{background:var(--plum);color:#D8CCC4;text-align:center;padding:34px 0;font-size:12.5px;letter-spacing:.1em}
+  .kicker {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--soft);
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
 
-  @media(max-width:560px){
-    h1{font-size:38px} h2{font-size:28px}
-    .hero{padding:60px 0 52px} section{padding:44px 0}
-    .patterns{grid-template-columns:1fr} .logistics{grid-template-columns:1fr}
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 58px;
+    line-height: 1.02;
+    color: var(--plum);
+    margin-bottom: 18px;
+    letter-spacing: -.01em;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--mag);
+  }
+
+  .guide-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 22px;
+    color: var(--soft);
+    margin-bottom: 18px;
+  }
+
+  .hero-desc {
+    font-size: 17px;
+    color: var(--plum);
+    max-width: 500px;
+    margin: 0 auto 36px;
+    line-height: 1.7;
+  }
+
+  .btn {
+    display: inline-block;
+    background: var(--mag);
+    color: #fff;
+    text-decoration: none;
+    padding: 20px 56px;
+    border-radius: 999px;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    transition: transform .15s ease, box-shadow .15s ease;
+    box-shadow: 0 4px 24px rgba(196,16,110,.28);
+  }
+  .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(196,16,110,.36); }
+
+  .hero-meta {
+    margin-top: 16px;
+    font-size: 12.5px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--sand);
+  }
+  .hero-meta span { margin: 0 6px; }
+
+  /* ── BODY COPY ── */
+  .body-copy {
+    background: var(--cream);
+    padding: 72px 24px;
+  }
+
+  .body-copy .wrap {
+    max-width: 600px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .body-copy p {
+    font-size: 18px;
+    line-height: 1.78;
+    color: var(--plum);
+    margin-bottom: 22px;
+  }
+
+  .body-copy p strong {
+    color: var(--mag);
+    font-weight: 600;
+  }
+
+  .body-copy p:last-child { margin-bottom: 0; }
+
+  .divider {
+    width: 48px;
+    height: 2px;
+    background: var(--blush);
+    margin: 36px auto;
+    border: none;
+  }
+
+  /* ── WHAT'S INSIDE ── */
+  .inside {
+    background: var(--linen);
+    padding: 72px 24px;
+  }
+
+  .inside .wrap {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: .24em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 10px;
+    text-align: center;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 1.12;
+    text-align: center;
+    margin-bottom: 52px;
+    color: var(--plum);
+  }
+
+  .inside-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+
+  .inside-item {
+    background: #fff;
+    border: 1px solid #DDD5CA;
+    padding: 28px 28px 28px 24px;
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+  }
+
+  .inside-num {
+    flex: none;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--blush);
+    line-height: 1;
+    margin-top: -4px;
+  }
+
+  .inside-item h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--mag);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .inside-item p {
+    font-size: 15px;
+    color: var(--soft);
+    line-height: 1.65;
+    margin: 0;
+  }
+
+  /* ── SOCIAL PROOF ── */
+  .proof {
+    background: var(--cream);
+    padding: 60px 24px;
+    text-align: center;
+  }
+
+  .proof .wrap { max-width: 580px; margin: 0 auto; }
+
+  .proof-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 26px;
+    line-height: 1.5;
+    color: var(--plum);
+    margin-bottom: 20px;
+  }
+
+  .proof-attr {
+    font-size: 13px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--sand);
+  }
+
+  .proof-count {
+    margin-top: 40px;
+    font-size: 13px;
+    letter-spacing: .15em;
+    text-transform: uppercase;
+    color: var(--sand);
+  }
+
+  .proof-count strong {
+    display: block;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 600;
+    color: var(--mag);
+    letter-spacing: 0;
+    text-transform: none;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  /* ── FORM ── */
+  .form-section {
+    background: var(--plum);
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .form-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(ellipse 400px 300px at 5% 50%, rgba(196,16,110,.12) 0%, transparent 70%),
+      radial-gradient(ellipse 300px 250px at 95% 50%, rgba(232,196,206,.08) 0%, transparent 70%);
+  }
+
+  .form-section .wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .form-section .section-label { color: rgba(255,255,255,.45); }
+
+  .form-section .section-title {
+    color: #fff;
+    margin-bottom: 12px;
+  }
+
+  .form-sub {
+    font-size: 16px;
+    color: rgba(255,255,255,.65);
+    margin-bottom: 44px;
+    line-height: 1.6;
+  }
+
+  .form-card {
+    background: var(--cream);
+    padding: 44px 40px 36px;
+    text-align: left;
+  }
+
+  .field { margin-bottom: 18px; }
+
+  .field label {
+    display: block;
+    font-size: 11.5px;
+    font-weight: 600;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--sand);
+    margin-bottom: 7px;
+  }
+
+  .field input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #D6CEC6;
+    background: #fff;
+    font-family: 'Jost', sans-serif;
+    font-size: 15.5px;
+    color: var(--plum);
+    outline: none;
+    border-radius: 0;
+    transition: border-color .15s ease;
+    appearance: none;
+  }
+  .field input:focus { border-color: var(--mag); }
+  .field input::placeholder { color: #BDB5AF; }
+
+  .field-optional {
+    font-size: 11px;
+    color: var(--sand);
+    font-weight: 400;
+    letter-spacing: 0;
+    text-transform: none;
+    margin-left: 6px;
+  }
+
+  .submit-btn {
+    width: 100%;
+    margin-top: 8px;
+    padding: 20px;
+    background: var(--mag);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    font-family: 'Jost', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    border-radius: 999px;
+    transition: transform .15s ease, box-shadow .15s ease;
+    box-shadow: 0 4px 20px rgba(196,16,110,.3);
+  }
+  .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(196,16,110,.4); }
+
+  .consent {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+  }
+
+  .consent input[type="checkbox"] {
+    flex: none;
+    width: 16px;
+    height: 16px;
+    margin-top: 2px;
+    accent-color: var(--mag);
+    cursor: pointer;
+  }
+
+  .consent label {
+    font-size: 12px;
+    color: var(--sand);
+    line-height: 1.55;
+    cursor: pointer;
+  }
+
+  .consent label strong { color: var(--soft); font-weight: 600; }
+
+  .form-links {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+    color: var(--sand);
+  }
+  .form-links a { color: var(--sand); text-decoration: underline; }
+  .form-links a:hover { color: var(--soft); }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #2A1822;
+    color: rgba(255,255,255,.35);
+    text-align: center;
+    padding: 28px 24px;
+    font-size: 12px;
+    letter-spacing: .08em;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 640px) {
+    .hero h1 { font-size: 40px; }
+    .section-title { font-size: 32px; }
+    .inside-grid { grid-template-columns: 1fr; }
+    .form-card { padding: 32px 24px 28px; }
+    .btn { padding: 18px 40px; }
+    .proof-quote { font-size: 22px; }
+  }
+
+  @media (max-width: 400px) {
+    .hero h1 { font-size: 34px; }
   }
 </style>
 </head>
 <body>
 
 <!-- HERO -->
-<div class="hero">
-  <div class="wrap">
-    <div class="kicker">Sensual Summer Collection · Energy Den</div>
-    <h1>Reading gives you clarity.<br>Practice changes timing.</h1>
-    <div class="sub">A 90-minute live experience for the woman ready to choose from herself again.</div>
-    <a class="btn" href="#claim">Claim your seat</a>
-    <div class="meta">Live · free · no replay</div>
-  </div>
-</div>
+<section class="hero">
+  <!-- Decorative petals -->
+  <div class="petal p1"></div>
+  <div class="petal p2"></div>
+  <div class="petal p3"></div>
+  <div class="petal p4"></div>
+  <div class="petal p5"></div>
+  <div class="petal p6"></div>
+  <div class="petal p7"></div>
 
-<!-- WHAT WE WORK -->
-<section>
   <div class="wrap">
-    <h2>In 90 minutes, live, we'll work:</h2>
-    <div class="work-list">
-      <div class="work-item"><div class="n">1</div><div class="t">The moment it works — in low stakes, when the pattern is easy to catch</div></div>
-      <div class="work-item"><div class="n">2</div><div class="t">The moment it fails — high stakes, when everything you've read stops helping</div></div>
-      <div class="work-item"><div class="n">3</div><div class="t">The person you cannot disappoint — the one relationship where the old pattern always wins</div></div>
-      <div class="work-item"><div class="n">4</div><div class="t">The threshold your receiving narrows at — which of the four places is quietly setting your ceiling</div></div>
+    <div class="kicker">Energy Den · Free Guide</div>
+    <h1>Reclaim Your<br><em>Energy &amp; Confidence</em></h1>
+    <div class="guide-name">The Gap — Why receiving is hard, and the three seconds where it changes.</div>
+    <p class="hero-desc">A twenty-minute guidebook that shows you the exact place in your body where you deflect — and one tool, three seconds long, for letting something land instead.</p>
+    <a href="#claim" class="btn">Claim Your Gift</a>
+    <div class="hero-meta">
+      <span>Free</span>·<span>Twenty minutes</span>·<span>Usable today</span>
     </div>
   </div>
 </section>
 
-<!-- THE TUG OF WAR -->
-<section class="alt">
+<!-- BODY COPY -->
+<section class="body-copy">
   <div class="wrap">
-    <h2>You're standing at the threshold of your next life.</h2>
-    <p class="big">But there's an internal tug of war making everything feel confusing, pressured, or off — even when you want to move forward.</p>
-    <div class="pull">You're not stuck. Your body is running an old pattern.</div>
-    <p>You've been circling the same situations for months. Starting things you can't finish. Feeling foggy or frozen the moment you try to move.</p>
-    <p>Here's what's actually happening. Your body is still operating from survival instructions written when you were young — instructions that kept you safe then, and are locking you down now.</p>
+    <p>Someone offers you something, and you hear yourself say <strong>"I'm fine"</strong> before you've decided anything.</p>
+    <p>The compliment gets handed back before it lands. The help gets waved off. The number comes out lower than the one you rehearsed.</p>
+    <hr class="divider">
+    <p>You already understand your worth. You could explain this to someone else beautifully. And yet the deflection happens anyway, every time, in about three seconds.</p>
+    <p>It was never a worth problem. When you give, you choose everything — what, when, how much, to whom. When you receive, you choose none of it.</p>
+    <p>So your body picks the version where it stays in control. That's the whole mechanism, and it runs before language arrives — which is exactly why twenty years of insight hasn't touched it.</p>
   </div>
 </section>
 
-<!-- THE PATTERN -->
-<section>
+<!-- WHAT'S INSIDE -->
+<section class="inside">
   <div class="wrap">
-    <h2>This is the Pattern.</h2>
-    <p>It filters every decision before you're even aware you're making one.</p>
-    <div class="filter"><div class="dot"></div><p>The boundary you don't set</p></div>
-    <div class="filter"><div class="dot"></div><p>The thing you want but won't ask for</p></div>
-    <div class="filter"><div class="dot"></div><p>The choice that feels too much, or not enough</p></div>
-    <div class="filter"><div class="dot"></div><p>The way you say yes when your body is screaming no</p></div>
-    <div class="pull">The Pattern runs beneath your awareness. Which means you can't override it with willpower. You have to interrupt it where it lives — in your body.</div>
-  </div>
-</section>
+    <div class="section-label">The Guide</div>
+    <h2 class="section-title">What's inside</h2>
+    <div class="inside-grid">
 
-<!-- WHAT I'LL SHOW YOU -->
-<section class="alt">
-  <div class="wrap">
-    <h2>In this live masterclass, I'll show you:</h2>
-    <p><strong>Where</strong> you're actually choosing from — which pattern is running you, and how to recognize it in real time.</p>
-    <p><strong>How</strong> to interrupt it, using the Decision Engine — my 5-step somatic method for breaking the pattern and returning to sovereign choice.</p>
-    <p>You'll experience it live. Not just learn about it. This is transformation you feel in your tissues.</p>
-  </div>
-</section>
+      <div class="inside-item">
+        <div class="inside-num">1</div>
+        <div>
+          <h3>Why Receiving Is Hard</h3>
+          <p>The real reason, which has nothing to do with worthiness and everything to do with control.</p>
+        </div>
+      </div>
 
-<!-- THE THREE PATTERNS -->
-<section>
-  <div class="wrap">
-    <h2>You're running one of three.</h2>
-    <div class="patterns">
-      <div class="pattern-box"><h4>Overfunction</h4><p>You take it before anyone asks</p></div>
-      <div class="pattern-box"><h4>People-Please</h4><p>Your yes arrives before you've checked</p></div>
-      <div class="pattern-box"><h4>Prove-It</h4><p>Receiving has to be earned first</p></div>
+      <div class="inside-item">
+        <div class="inside-num">2</div>
+        <div>
+          <h3>Your Tell</h3>
+          <p>The exact physical place your pattern announces itself, one to three seconds before you say a word. It's the same one every time and nobody has ever asked you to look at it.</p>
+        </div>
+      </div>
+
+      <div class="inside-item">
+        <div class="inside-num">3</div>
+        <div>
+          <h3>The Tool</h3>
+          <p>Five steps. About three seconds. Usable the same day you read it — and it ends with letting something actually be received, which is the part that changes things.</p>
+        </div>
+      </div>
+
+      <div class="inside-item">
+        <div class="inside-num">4</div>
+        <div>
+          <h3>Where It Stops Working</h3>
+          <p>Told honestly, before you find out on your own and decide something's wrong with you.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
 
-<!-- WHAT YOU WALK AWAY WITH -->
-<section class="alt">
+<!-- SOCIAL PROOF -->
+<section class="proof">
   <div class="wrap">
-    <h2>What you'll walk away with</h2>
-    <div class="check-list">
-      <div class="check-item"><div class="mark">✓</div><p>Clear understanding of which pattern has been running you — Overfunction, People-Please, or Prove-It</p></div>
-      <div class="check-item"><div class="mark">✓</div><p>Direct experience of the 5 R's — you'll feel what happens when the old grip releases</p></div>
-      <div class="check-item"><div class="mark">✓</div><p>Practices you can use immediately to interrupt the pattern in real time</p></div>
-      <div class="check-item"><div class="mark">✓</div><p>Clarity on your next step — whether that's The Return, Momentum 90, or Inner Alchemy</p></div>
+    <div class="proof-quote">"I've done years of therapy and coaching. This was the first time I could actually feel where the pattern lived."</div>
+    <div class="proof-attr">— Energy Den community member</div>
+    <div class="proof-count">
+      <strong>2,400+</strong>
+      women have downloaded this guide
     </div>
-    <div class="pull">Your inner compass never went away. It's just been buried under patterns that aren't yours.</div>
   </div>
 </section>
 
-<!-- LOGISTICS -->
-<section>
+<!-- FORM -->
+<section class="form-section" id="claim">
   <div class="wrap">
-    <h2>Logistics</h2>
-    <div class="logistics">
-      <div class="lg-item"><div class="lbl">Duration</div><div class="val">90 min + Q&A</div></div>
-      <div class="lg-item"><div class="lbl">Format</div><div class="val">Live virtual</div></div>
-      <div class="lg-item"><div class="lbl">Investment</div><div class="val">Free</div></div>
+    <div class="section-label">Get instant access</div>
+    <h2 class="section-title">Claim Your Gift</h2>
+    <p class="form-sub">Free. No credit card. Yours to keep.</p>
+
+    <div class="form-card">
+      <div class="field">
+        <label for="fname">First Name</label>
+        <input type="text" id="fname" name="first_name" placeholder="Your first name" required>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="your@email.com" required>
+      </div>
+
+      <div class="field">
+        <label for="phone">Phone <span class="field-optional">(optional)</span></label>
+        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000">
+      </div>
+
+      <button type="submit" class="submit-btn">Claim Your Gift</button>
+
+      <div class="consent">
+        <input type="checkbox" id="sms-consent" name="sms_consent">
+        <label for="sms-consent">
+          I agree to receive occasional messages from <strong>Energy Den</strong> about The Gap and related offerings. Message &amp; data rates may apply. Reply STOP to opt out.
+        </label>
+      </div>
+
+      <div class="form-links">
+        <a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a>
+      </div>
     </div>
-    <p class="center" style="font-size:14px;color:var(--soft)">No replays for this event. This is practice, and practice doesn't record.</p>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="cta-block" id="claim">
-  <div class="wrap">
-    <h2>You don't need a different life. You need the moment before the pattern chooses for you.</h2>
-    <a class="btn" href="#">Claim your seat</a>
-    <div class="meta">[DATE] at [TIME] · live · free · no replay</div>
-  </div>
-</section>
-
-<footer>Energy Den · Calgary, Alberta</footer>
+<footer>
+  Energy Den · Calgary, Alberta
+</footer>
 
 </body>
 </html>
-
